@@ -119,8 +119,9 @@ input[type="radio"] {
     display: flex;
     flex-flow: column nowrap;
     text-align: center;
+    overflow: hidden;
     @include desktop{
-      width: 50%;
+      width: 60%;
       flex-flow: row nowrap;
       align-items: center;
       text-align: left;
@@ -129,15 +130,15 @@ input[type="radio"] {
       display: none;
     }
     label.dragdroplabel {
-      padding: 0 0 0 10px;
+      padding: 0;
       order: 2;
+      margin: 0 0 -5px 10px;
     }
     span svg {
       margin: 0px 6px -5px 0px;
     }
     .labelwpr{
       display: none;
-      margin: 0 0 0 10px;
 
       &.visible{
         display: block;

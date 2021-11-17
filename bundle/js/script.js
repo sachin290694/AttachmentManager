@@ -23,7 +23,7 @@ const toggleSwipe = () => {
 
 const submit = () => {
   toggleModal();
-  droppedFiles == true && alert( `File is Attached !!! \nName : ${droppedFiles[0].name} \nType : ${selectredFormate}\nNote : ${textarea.value}`);
+  droppedFiles != false && alert( `File is Attached !!! \nName : ${droppedFiles[0].name} \nType : ${selectredFormate}\nNote : ${textarea.value}`);
   form1.reset();
   form2.reset();
   fileUpload.querySelector(".labelwpr").classList.add("visible");
