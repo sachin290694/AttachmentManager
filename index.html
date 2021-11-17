@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visa</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./bundle/css/styles.min.css">
+</head>
+<body>
+    <div class="landingpg" role="main">
+        <h1 tabindex="0">VISA Attachment Manager</h1>
+        <p tabindex="0">Please manage your file below</p>
+        <button class="primaryBtn" onclick="toggleModal()" tabindex="0">ATTACH</button>
+    </div>
+
+    <div class="modal">
+        <div class="modalbody">
+            <div class="container">
+                <div class="modelheader">
+                    <h2 tabindex="0">
+                        Manage Attachment
+                    </h2>
+                    <div tabindex="0" role="button" aria-label="close modal" class="svgwpr modalclose" onclick="submit()">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+                    </div>
+                </div>
+                <div class="modalmain">
+                    <div class="step1 visible">
+                        <form id="form1" role="radiogroup" tabindex="0">
+                            <div class="inputwpr">
+                                <input type="radio" id="fileupload1" name="waytoupload">
+                                <label for="fileupload1" aria-labelledby="form1" aria-checked="false"  role="radio"  tabindex="0">Attach from network or Local Drive</label>
+                            </div>
+                            <div class="inputwpr">
+                                <input type="radio" id="fileupload2" name="waytoupload">
+                                <label for="fileupload2"  aria-labelledby="form1" aria-checked="false"  role="radio"  tabindex="0">Attach existing document from case</label>
+                            </div>
+                            <div class="inputwpr">
+                                <input type="radio" id="fileupload3" name="waytoupload">
+                                <label for="fileupload3" aria-labelledby="form1" aria-checked="false"  role="radio"  tabindex="0">Create Document from Text</label>
+                            </div>
+                            <div class="inputwpr">
+                                <input type="radio" id="fileupload4" name="waytoupload" >
+                                <label for="fileupload4" aria-labelledby="form1" aria-checked="false"  role="radio"  tabindex="0">Unattach Existing Document</label>
+                            </div>
+                        </form>
+                        <div class="modalfooter">
+                            <button class="secondaryBtn" onclick="submit()" tabindex="0">CANCEL</button>
+                            <button class="primaryBtn" onclick="toggleSwipe()" tabindex="0">NEXT</button>
+                        </div>
+                    </div>
+                    <div class="step2">
+                        <form id="form2" role="upload" tabindex="0">
+                            <div class="inputwpr">
+                                <div class="uploadBtnnWpr">
+                                    <label tabindex="0">Documents</label>
+                                    <div class="wpr" id="fileUpload" ondrop="drop(event);" ondragover="preventdefault(event);">
+                                        <input type="file" id="documents">
+                                        <label for="documents" class="dragdroplabel" tabindex="0" role="fileUpload">
+                                            <div class="labelwpr visible">
+                                                <span class="svgwpr">
+                                                    <svg enable-background="new 0 0 24 24" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><g><rect fill="none" height="24" width="24"/></g><g><path d="M18,15v3H6v-3H4v3c0,1.1,0.9,2,2,2h12c1.1,0,2-0.9,2-2v-3H18z M7,9l1.41,1.41L11,7.83V16h2V7.83l2.59,2.58L17,9l-5-5L7,9z"/></g></svg>
+                                                </span>
+                                                <strong>Choose file</strong> or Drag & Drop Zone
+                                            </div>
+                                            <div><span class="filename"></span></div>
+                                        </label>
+                                        <button class="secondaryBtn" tabindex="0" onclick="return false">UPLOAD</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="inputwpr">
+                                <div class="dropdown">
+                                    <div class="btnWpr">
+                                        <span tabindex="0">Document Type</span>
+                                        <button tabindex="0" onclick="return dropdownToggle()"> <span class="text" data-val="Select File Type">Select File Type</span> <span class="carret"><svg height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M24 24H0V0h24v24z" fill="none" opacity=".87"/><path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6-1.41-1.41z"/></svg></span> </button>
+                                    </div>
+                                    <div class="dropdownWpr" role="dropdown">
+                                        <ul>
+                                            <li onclick="selectedDropdown(this)" tabindex="0">PDF</li>
+                                            <li onclick="selectedDropdown(this)" tabindex="0">JPG</li>
+                                            <li onclick="selectedDropdown(this)" tabindex="0">WORD</li>
+                                            <li onclick="selectedDropdown(this)" tabindex="0">EXCEL</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="inputwpr">
+                                <label for="documentnotes">Document Notes</label>
+                                <textarea id="documentnotes" rows="5"></textarea>
+                            </div>
+                        </form>
+                        <div class="modalfooter">
+                            <button class="secondaryBtn" onclick="submit()">CANCEL</button>
+                            <button class="primaryBtn" onclick="submit()">ATTACH</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="./bundle/js/script.js"></script>
+</body>
+</html>

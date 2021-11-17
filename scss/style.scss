@@ -1,0 +1,370 @@
+:root {
+  --primary: #143f8c;
+  --secondary: #1a1f71;
+  --bluehover: #e0eafa;
+  --blueactive: #0051dc;
+  --blueborder: #003ea9;
+  --white: #ffffff;
+  --black: #000000;
+  --grey: #f1f1f2;
+}
+
+// Global Components
+$font-family: "Open Sans", sans-serif;
+
+$desktop: 992px;
+$lgdesktop: 1440px;
+
+// Responsive Media Query
+@mixin desktop() {
+  @media screen and (min-width: $desktop) {
+    @content;
+  }
+}
+
+@mixin lgdesktop() {
+  @media screen and (min-width: $lgdesktop) {
+    @content;
+  }
+}
+
+body {
+  font-family: $font-family;
+  background: var(--grey);
+  margin: 20vh 0 0 0;
+}
+
+.hide {
+  display: none;
+}
+
+.show {
+  display: flex;
+}
+
+input[type="radio"] {
+  visibility: hidden;
+  & + label {
+    position: relative;
+  }
+  & + label:before {
+    content: "";
+    width: 14px;
+    height: 14px;
+    background: transparent;
+    position: absolute;
+    left: -20px;
+    top: 5px;
+    border-radius: 100px;
+    border: 1px solid var(--primary);
+  }
+  &:checked + label:after {
+    content: "";
+    width: 10px;
+    height: 10px;
+    background: var(--primary);
+    position: absolute;
+    left: -17px;
+    top: 8px;
+    border-radius: 100px;
+  }
+}
+
+.primaryBtn {
+  background: var(--primary);
+  color: var(--white);
+  font-family: $font-family;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 12px 40px;
+  border: 0;
+  -webkit-font-smoothing: antialiased;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  &:hover {
+    background: var(--secondary);
+  }
+  &:focus {
+    background: var(--blueactive);
+    color: var(--white);
+  }
+}
+
+.secondaryBtn {
+  background: var(--white);
+  color: var(--primary);
+  font-family: $font-family;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 10px 40px;
+  -webkit-font-smoothing: antialiased;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  border: 2px solid var(--blueborder);
+  &:hover {
+    background: var(--bluehover);
+  }
+  &:focus {
+    background: var(--blueactive);
+    color: var(--white);
+    border: 2px solid var(--blueactive);
+  }
+}
+
+.uploadBtnnWpr {
+  .wpr {
+    border: 1px dashed var(--primary);
+    padding: 10px;
+    margin: 10px 0 0 0;
+    display: flex;
+    flex-flow: column nowrap;
+    text-align: center;
+    @include desktop{
+      width: 50%;
+      flex-flow: row nowrap;
+      align-items: center;
+      text-align: left;
+    }
+    input {
+      display: none;
+    }
+    label.dragdroplabel {
+      padding: 0 0 0 10px;
+      order: 2;
+    }
+    span svg {
+      margin: 0px 6px -5px 0px;
+    }
+    .labelwpr{
+      display: none;
+      margin: 0 0 0 10px;
+
+      &.visible{
+        display: block;
+      }
+    }
+  }
+}
+
+.dropdown {
+  position: relative;
+  .btnWpr {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: baseline;
+    button {
+      background: var(--white);
+      border: 1px solid var(--black);
+      padding: 8px 20px;
+      text-align: left;
+      margin: 5px 0 0 0;
+      display: flex;
+      flex-flow: row nowrap;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      @include desktop{
+        width: 33.333%;
+      }
+      .carret svg {
+        transform: rotate(0deg);
+        transition: all 0.2s ease-in-out;
+      }
+    }
+  }
+  .dropdownWpr {
+    display: none;
+    flex-flow: column nowrap;
+    width: 100%;
+    position: absolute;
+    background: white;
+    border: 1px solid black;
+    width: auto;
+    padding: 20px 40px 20px 20px;
+    ul {
+      margin: 0;
+      padding: 0;
+      li {
+        list-style: none;
+        margin: 5px 0 0 0;
+        cursor: pointer;
+      }
+    }
+  }
+  &.visible {
+    .dropdownWpr {
+      display: flex;
+    }
+    button .carret svg {
+      transform: rotate(180deg);
+    }
+  }
+}
+
+.landingpg {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  h1 {
+    font-size: 22px;
+    font-weight: 400;
+    margin: 0 0 10px 0;
+    @include desktop {
+      font-size: 54px;
+    }
+  }
+
+  p {
+    font-size: 14px;
+    font-weight: 400;
+    margin: 0 0 50px 0;
+    @include desktop {
+      font-size: 16px;
+    }
+  }
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 1;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  display: none;
+  .modalbody {
+    width: 100%;
+    height: 100vh;
+    background: var(--white);
+    min-height: 400px;
+    box-shadow: 0 0 20px 5px rgb(0 0 0 / 5%);
+    display: flex;
+    height: calc(100vh - 40px);
+    margin: 20px;
+    @include desktop {
+      width: 50%;
+      height: 70vh;
+      min-height: 570px;
+      margin: 0;
+    }
+    .container {
+      padding: 30px;
+      display: flex;
+      flex-flow: column nowrap;
+      width: 100%;
+      .modalmain {
+        display: flex;
+        width: 100%;
+        flex: 1;
+      }
+      .modalclose {
+        cursor: pointer;
+      }
+    }
+    h2 {
+      margin: 0;
+      color: var(--primary);
+      font-weight: 400;
+    }
+    .modelheader {
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .step1 {
+      flex-flow: column nowrap;
+      width: 100%;
+      display: none;
+
+      &.visible {
+        display: flex;
+      }
+
+      form {
+        display: flex;
+        flex-flow: column nowrap;
+        flex: 1;
+        margin: 20px 0 0 0;
+        @include desktop {
+          margin: 0 0 0 5%;
+          justify-content: center;
+        }
+        .inputwpr {
+          padding: 10px 0;
+        }
+        label {
+          padding: 0 0 0 5px;
+          font-size: 16px;
+          cursor: pointer;
+          @include desktop {
+            font-size: 18px;
+          }
+        }
+      }
+    }
+    .step2 {
+      display: none;
+      flex-flow: column nowrap;
+      width: 100%;
+
+      &.visible {
+        display: flex;
+      }
+      form {
+        display: flex;
+        flex-flow: column nowrap;
+        margin: 20px 0 0 0;
+        flex: 1;
+        .inputwpr {
+          padding: 20px 0;
+          display: flex;
+          flex-flow: column nowrap;
+        }
+        label {
+          padding: 0 0 0 5px;
+          font-size: 14px;
+          cursor: pointer;
+          @include desktop {
+            font-size: 16px;
+            padding: 0 0 5px 0;
+          }
+        }
+        textarea {
+          background: var(--white);
+          border: 1px solid var(--black);
+          padding: 12px 20px;
+          text-align: left;
+          width: 100%;
+          resize: none;
+          box-sizing: border-box;
+          @include desktop{
+            width: 33.333%;
+          }
+        }
+      }
+    }
+
+    .modalfooter {
+      display: flex;
+      gap: 10px;
+      @include desktop {
+        align-self: flex-end;
+      }
+      button {
+        flex: 1;
+        width: 50%;
+        @include desktop {
+          flex: auto;
+        }
+      }
+    }
+  }
+}
